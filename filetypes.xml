@@ -1,0 +1,9 @@
+<application>
+  <component name="FileTypeManager" version="17">
+    <extensionMap>
+      <mapping ext="webp" type="Image" />
+      <mapping pattern="map_style" type="JSON" />
+      <mapping pattern="POS" type="SQL" />
+    </extensionMap>
+  </component>
+</application>
