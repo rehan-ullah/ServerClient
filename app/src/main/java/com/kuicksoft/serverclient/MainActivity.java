@@ -1,17 +1,12 @@
 package com.kuicksoft.serverclient;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.annotation.SuppressLint;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -25,19 +20,22 @@ public class MainActivity extends AppCompatActivity {
     int SERVER_PORT;
     PrintWriter output;
     BufferedReader input;
+    EditText ipaddressField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ipaddressField = findViewById(R.id.ipaddressField);
+        SERVER_IP = ipaddressField.getText().toString();
+        SERVER_PORT = 8080;
     }
 
     public void onAction(View view) {
-        SERVER_IP = "192.168.1.2";
-        SERVER_PORT = 8080;
-        Thread1 = new Thread(new Thread1());
-        Thread1.start();
+        if(!SERVER_IP.equals("")) {
+            Thread1 = new Thread(new Thread1());
+            Thread1.start();
+        }
     }
 
     public void offAction(View view) {
