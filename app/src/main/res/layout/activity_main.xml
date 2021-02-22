@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    tools:context=".MainActivity">
+    android:background="@color/colorAccent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,10 +24,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
+            android:layout_margin="5dp"
             android:textAlignment="center"
-            android:background="@null"
+            android:background="@drawable/btn_back"
             android:id="@+id/ipaddressField"
+            android:singleLine="true"
+            android:hint="@string/hint"
+            android:lines="1"
+            android:maxLines="1"
             android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhite"
             android:textSize="20sp"
             android:textStyle="bold" />
 

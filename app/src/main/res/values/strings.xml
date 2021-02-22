@@ -13,5 +13,8 @@
     <string name="ipadd">Server IP Address</string>
     <string name="connected">Connected</string>
     <string name="nconnected">Not Connected</string>
+    <string name="hint">Enter Server IP Address</string>
+    <string name="left">Client Left</string>
+
 
 </resources>

@@ -1,71 +1,86 @@
 package com.kuicksoft.serverclient;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
 import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @SuppressLint("SetTextI18n")
 public class MainActivity extends AppCompatActivity {
-    Thread Thread1 = null;
     String SERVER_IP;
     int SERVER_PORT;
     PrintWriter output;
     BufferedReader input;
     EditText ipaddressField;
+    ExecutorService pool;
+    boolean isConnected = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ipaddressField = findViewById(R.id.ipaddressField);
-        SERVER_IP = ipaddressField.getText().toString();
         SERVER_PORT = 8080;
+        pool = Executors.newFixedThreadPool(2);
     }
 
     public void onAction(View view) {
-        if(!SERVER_IP.equals("")) {
-            Thread1 = new Thread(new Thread1());
-            Thread1.start();
+        SERVER_IP = ipaddressField.getText().toString();
+        if (!SERVER_IP.equals("")) {
+            pool.execute(new ConnectToServer());
+        } else {
+            Toast.makeText(this, "Please Enter Server IP Address", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void offAction(View view) {
-        Thread1.destroy();
-        Thread1.stop();
+        shutdownPool();
     }
 
     public void lOnAction(View view) {
-        new Thread(new Thread3(getResources().getString(R.string.lon))).start();
+        if (isConnected)
+            pool.execute(new SendMessageToServer(getResources().getString(R.string.lon)));
     }
 
     public void lOffAction(View view) {
-
+        if (isConnected)
+            pool.execute(new SendMessageToServer(getResources().getString(R.string.loff)));
     }
 
     public void fOnAction(View view) {
-
+        if (isConnected)
+            pool.execute(new SendMessageToServer(getResources().getString(R.string.fon)));
     }
 
     public void fOffAction(View view) {
-
+        if (isConnected)
+            pool.execute(new SendMessageToServer(getResources().getString(R.string.foff)));
     }
 
     public void aPersonAction(View view) {
+        if (isConnected)
+            pool.execute(new SendMessageToServer(getResources().getString(R.string.accept)));
     }
 
     public void dPersonAction(View view) {
+        if (isConnected)
+            pool.execute(new SendMessageToServer(getResources().getString(R.string.deny)));
     }
 
-    class Thread1 implements Runnable {
+    class ConnectToServer implements Runnable {
         public void run() {
             Socket socket;
             try {
@@ -75,45 +90,26 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        isConnected = true;
                         ((TextView) findViewById(R.id.messageView)).setText(getResources().getString(R.string.connected));
                     }
                 });
-//                new Thread(new Thread2()).start();
-            } catch (IOException e) {
+            } catch (final IOException e) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ((TextView) findViewById(R.id.messageView)).setText(e.getCause().getLocalizedMessage());
+                    }
+                });
                 e.printStackTrace();
             }
         }
     }
 
-//    class Thread2 implements Runnable {
-//        @Override
-//        public void run() {
-//            while (true) {
-//                try {
-//                    final String message = input.readLine();
-//                    if (message != null){
-//                        runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                tvMessages.append("server: " + message + "\n");
-//                            }
-//                        });
-//                    } else{
-//                        Thread1 = new Thread(new Thread1());
-//                        Thread1.start();
-//                        return;
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//    }
-
-    class Thread3 implements Runnable {
+    class SendMessageToServer implements Runnable {
         private String message;
 
-        Thread3(String message) {
+        SendMessageToServer(String message) {
             this.message = message;
         }
 
@@ -121,14 +117,22 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             output.write(message);
             output.flush();
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    tvMessages.append("client: " + message + "\n");
-//                    etMessage.setText("");
-//                }
-//            });
-            Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT);
+            Log.d("message", message);
         }
     }
+
+    private void shutdownPool() {
+        if (isConnected) {
+            pool.execute(new SendMessageToServer(getResources().getString(R.string.left)));
+            pool.shutdown();
+            isConnected = false;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        shutdownPool();
+    }
+
 }
