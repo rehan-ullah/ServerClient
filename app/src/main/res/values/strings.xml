@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">HAC</string>
+
+    <string name="title">Home Automation Control</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+    <string name="lon">Light ON</string>
+    <string name="loff">Light OFF</string>
+    <string name="fon">Fan ON</string>
+    <string name="foff">Fan OFF</string>
+    <string name="accept">Accept\nPerson</string>
+    <string name="deny">Deny\nPerson</string>
+    <string name="ipadd">Server IP Address</string>
+    <string name="connected">Connected</string>
+    <string name="nconnected">Not Connected</string>
+
+</resources>
