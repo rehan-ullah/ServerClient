@@ -2,8 +2,8 @@
     <string name="app_name">HAC</string>
 
     <string name="title">Home Automation Control</string>
-    <string name="on">ON</string>
-    <string name="off">OFF</string>
+    <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
     <string name="lon">Light ON</string>
     <string name="loff">Light OFF</string>
     <string name="fon">Fan ON</string>
@@ -15,6 +15,7 @@
     <string name="nconnected">Not Connected</string>
     <string name="hint">Enter Server IP Address</string>
     <string name="left">Client Left</string>
+    <string name="tryToConnect">Trying to connect…</string>
 
 
 </resources>

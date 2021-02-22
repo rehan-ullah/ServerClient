@@ -13,18 +13,22 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="7dp"
+            android:fontFamily="@font/roboto"
             android:text="@string/title"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
             android:textSize="20sp"
+            android:layout_margin="20dp"
             android:textStyle="bold" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_margin="5dp"
+            android:padding="3dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/roboto"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             android:textAlignment="center"
             android:background="@drawable/btn_back"
             android:id="@+id/ipaddressField"
@@ -34,18 +38,19 @@
             android:maxLines="1"
             android:textColor="@color/colorWhite"
             android:textColorHint="@color/colorWhite"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
+            android:fontFamily="@font/roboto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:id="@+id/messageView"
             android:text="@string/nconnected"
             android:textAlignment="center"
-            android:textColor="@color/colorWhite"
-            android:textSize="20sp"
+            android:textColor="@color/colorRed"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
 
@@ -57,13 +62,14 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="80dp"
+                android:fontFamily="@font/roboto"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_back"
                 android:onClick="onAction"
-                android:text="@string/on"
+                android:text="@string/connect"
                 android:textColor="@color/colorWhite"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <Button
@@ -71,11 +77,12 @@
                 android:layout_height="80dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/btn_back"
+                android:fontFamily="@font/roboto"
+                android:background="@drawable/btn_back_green_border"
                 android:onClick="offAction"
-                android:text="@string/off"
+                android:text="@string/disconnect"
                 android:textColor="@color/colorWhite"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -88,11 +95,12 @@
                 android:layout_height="80dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/roboto"
                 android:background="@drawable/btn_back"
                 android:onClick="lOnAction"
                 android:text="@string/lon"
                 android:textColor="@color/colorWhite"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <Button
@@ -100,11 +108,12 @@
                 android:layout_height="80dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/btn_back"
+                android:fontFamily="@font/roboto"
+                android:background="@drawable/btn_back_green_border"
                 android:onClick="lOffAction"
                 android:text="@string/loff"
                 android:textColor="@color/colorWhite"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -118,10 +127,11 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_back"
+                android:fontFamily="@font/roboto"
                 android:onClick="fOnAction"
                 android:text="@string/fon"
                 android:textColor="@color/colorWhite"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <Button
@@ -129,11 +139,12 @@
                 android:layout_height="80dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/btn_back"
+                android:fontFamily="@font/roboto"
+                android:background="@drawable/btn_back_green_border"
                 android:onClick="fOffAction"
                 android:text="@string/foff"
                 android:textColor="@color/colorWhite"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -145,12 +156,13 @@
                 android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:layout_margin="10dp"
+                android:fontFamily="@font/roboto"
                 android:layout_weight="1"
                 android:background="@drawable/btn_back"
                 android:onClick="aPersonAction"
                 android:text="@string/accept"
                 android:textColor="@color/colorWhite"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <Button
@@ -158,11 +170,12 @@
                 android:layout_height="80dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/btn_back"
+                android:background="@drawable/btn_back_green_border"
+                android:fontFamily="@font/roboto"
                 android:onClick="dPersonAction"
                 android:text="@string/deny"
                 android:textColor="@color/colorWhite"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
