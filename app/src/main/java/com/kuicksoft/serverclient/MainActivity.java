@@ -158,8 +158,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void changeBack(View view, int i) {
-        ((LinearLayout) view.getParent()).getChildAt(i).setBackgroundResource(R.drawable.btn_back);
+        LinearLayout parent = (LinearLayout) view.getParent();
+        parent.getChildAt(i).setBackgroundResource(R.drawable.btn_back);
         view.setBackgroundResource(R.drawable.btn_back_green_border);
+        parent.getChildAt(i).setEnabled(true);
+        view.setEnabled(false);
     }
     @Override
     protected void onDestroy() {
