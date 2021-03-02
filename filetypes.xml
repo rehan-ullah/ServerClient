@@ -3,6 +3,8 @@
     <extensionMap>
       <mapping ext="webp" type="Image" />
       <mapping pattern="map_style" type="JSON" />
+      <mapping ext="gradle.kts" type="Kotlin" />
+      <mapping ext="main.kts" type="Kotlin" />
       <mapping pattern="POS" type="SQL" />
     </extensionMap>
   </component>
